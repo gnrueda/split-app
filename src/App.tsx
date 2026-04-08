@@ -28,9 +28,9 @@ function App() {
 
   const addUser = (name: string): boolean => {
     try {
-      const newUsers = usersManager.addUser(users, name);
-      setUsers(newUsers);
-      storage.saveUsers(newUsers);
+      const newUser = usersManager.addUser(users, name);
+      setUsers(newUser);
+      storage.saveUsers(newUser);
       notifications.success(`"${name}" añadido correctamente`);
       return true;
     } catch (error: unknown) {
@@ -41,18 +41,14 @@ function App() {
 
   const addExpense = (payer: string, amount: string, desc: string): boolean => {
     try {
-      if (!users.includes(payer)) {
-        throw new Error("El participante seleccionado no es válido");
-      }
-
-      const newExpenses = expensesManager.addExpense(
+      const newExpense = expensesManager.addExpense(
         expenses,
         payer,
         amount,
         desc,
       );
-      setExpenses(newExpenses);
-      storage.saveExpenses(newExpenses);
+      setExpenses(newExpense);
+      storage.saveExpenses(newExpense);
       notifications.success("Gasto añadido correctamente");
       return true;
     } catch (error: unknown) {

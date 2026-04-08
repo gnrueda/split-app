@@ -30,9 +30,6 @@ export const validators = {
     desc: string,
   ): ValidatedExpenseInput {
     const normalizedPayer = payer.trim();
-    if (normalizedPayer.length === 0) {
-      throw new Error("Por favor selecciona quién pagó");
-    }
 
     const parsedAmount =
       typeof amountInput === "number" ? amountInput : Number(amountInput);

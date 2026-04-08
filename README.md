@@ -19,6 +19,7 @@ Web app to split shared expenses fairly among multiple participants and generate
 
 - [React](https://react.dev/)
 - [Vite](https://vite.dev/)
+- TypeScript
 - ESLint + Prettier
 
 ## Requirements

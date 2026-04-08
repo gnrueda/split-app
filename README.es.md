@@ -19,6 +19,7 @@ App web para dividir gastos compartidos de forma justa entre varias personas y g
 
 - [React](https://react.dev/)
 - [Vite](https://vite.dev/)
+- TypeScript
 - ESLint + Prettier
 
 ## Requisitos
