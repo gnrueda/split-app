@@ -46,7 +46,12 @@ export function BalanceSection({
         <div className="accumulated-section">
           <div className="accumulated-header">
             <h3>Acumulado por Participante</h3>
-            <button onClick={toggleAccumulated} className="secondary-button">
+            <button
+              onClick={toggleAccumulated}
+              className="secondary-button"
+              aria-expanded={showAccumulated}
+              aria-controls="accumulated-list"
+            >
               {showAccumulated ? "Ocultar" : "Mostrar"}
             </button>
           </div>
