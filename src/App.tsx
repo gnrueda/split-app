@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { UsersSection } from "./components/UsersSection";
 import { ExpenseSection } from "./components/ExpenseSection";
 import { BalanceSection } from "./components/BalanceSection";
+import { Footer } from "./components/Footer";
 import { storage } from "./utils/storage";
 import { notifications } from "./utils/notifications";
 import { usersManager } from "./utils/users";
@@ -69,23 +70,28 @@ function App() {
   };
 
   return (
-    <div className="app">
-      <h1>💰 División de Gastos</h1>
+    <>
+      <main className="app">
+        <header>
+          <h1>💰 División de Gastos</h1>
+        </header>
 
-      <UsersSection users={users} onAddUser={addUser} />
+        <UsersSection users={users} onAddUser={addUser} />
 
-      <ExpenseSection
-        users={users}
-        expenses={expenses}
-        onAddExpense={addExpense}
-      />
+        <ExpenseSection
+          users={users}
+          expenses={expenses}
+          onAddExpense={addExpense}
+        />
 
-      <BalanceSection
-        users={users}
-        expenses={expenses}
-        onClearData={clearData}
-      />
-    </div>
+        <BalanceSection
+          users={users}
+          expenses={expenses}
+          onClearData={clearData}
+        />
+      </main>
+      <Footer />
+    </>
   );
 }
 
