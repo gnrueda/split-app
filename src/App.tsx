@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Header } from "./components/Header";
 import { UsersSection } from "./components/UsersSection";
 import { ExpenseSection } from "./components/ExpenseSection";
 import { BalanceSection } from "./components/BalanceSection";
@@ -72,9 +73,7 @@ function App() {
   return (
     <>
       <main className="app">
-        <header>
-          <h1>💰 División de Gastos</h1>
-        </header>
+        <Header />
 
         <UsersSection users={users} onAddUser={addUser} />
 
