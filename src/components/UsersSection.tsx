@@ -24,24 +24,42 @@ export function UsersSection({ users, onAddUser }: UsersSectionProps) {
   };
 
   return (
-    <div className="section">
-      <h2>1. Participantes</h2>
-      <input
-        type="text"
-        value={inputName}
-        onChange={(e) => setInputName(e.target.value)}
-        onKeyDown={handleKeyPress}
-        placeholder="Nombre (ej. Ana)"
-        aria-label="Nombre de participante"
-      />
-      <button onClick={handleAddUser} disabled={isAddUserDisabled}>
-        Agregar Persona
-      </button>
-      <ul>
-        {users.map((user) => (
-          <li key={user}>{user}</li>
-        ))}
-      </ul>
-    </div>
+    <section className="section section-users">
+      <div className="section-head">
+        <h2>1. Participantes</h2>
+        <p>Añade quienes forman parte del gasto compartido.</p>
+      </div>
+
+      <div className="field-row">
+        <input
+          type="text"
+          value={inputName}
+          onChange={(e) => setInputName(e.target.value)}
+          onKeyDown={handleKeyPress}
+          placeholder="Nombre"
+          aria-label="Nombre de participante"
+        />
+        <button
+          type="button"
+          className="primary-button"
+          onClick={handleAddUser}
+          disabled={isAddUserDisabled}
+        >
+          Agregar persona
+        </button>
+      </div>
+
+      {users.length === 0 ? (
+        <p className="empty-copy">Aun no hay participantes registrados.</p>
+      ) : (
+        <ul className="user-list">
+          {users.map((user) => (
+            <li key={user} className="user-pill">
+              {user}
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
   );
 }

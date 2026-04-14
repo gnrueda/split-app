@@ -62,8 +62,7 @@ npm run format:check # Verifica el formato
 
 ## Capturas de pantalla
 
-![Screenshot 1](./screenshots/screenshot1.png)
-![Screenshot 2](./screenshots/screenshot2.png)
+![Desktop](./screenshots/desktop-with-data.png)
 
 ## Licencia
 

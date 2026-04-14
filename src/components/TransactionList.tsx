@@ -8,8 +8,13 @@ interface TransactionListProps {
 export function TransactionList({ transaction }: TransactionListProps) {
   return (
     <li className="debt-item">
-      {transaction.from} le paga a {transaction.to}: $
-      {transaction.amount.toFixed(CONFIG.PRECISION.ROUNDING_DECIMALS)}
+      <span className="debt-parties">
+        <strong>{transaction.from}</strong> paga a{" "}
+        <strong>{transaction.to}</strong>
+      </span>
+      <span className="debt-amount">
+        ${transaction.amount.toFixed(CONFIG.PRECISION.ROUNDING_DECIMALS)}
+      </span>
     </li>
   );
 }

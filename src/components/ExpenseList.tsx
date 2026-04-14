@@ -18,10 +18,17 @@ export function ExpenseList({ expense }: ExpenseListProps) {
   const timestampText = ` - ${relativeTimeText} [${absoluteTime}]`;
 
   return (
-    <li>
-      {expense.desc} (pagó {expense.payer}) - $
-      {expense.amount.toFixed(CONFIG.PRECISION.ROUNDING_DECIMALS)}
-      {timestampText}
+    <li className="expense-item">
+      <div className="expense-main">
+        <span className="expense-desc">{expense.desc}</span>
+        <span className="expense-payer">Pagó {expense.payer}</span>
+      </div>
+      <div className="expense-meta">
+        <span className="expense-amount">
+          ${expense.amount.toFixed(CONFIG.PRECISION.ROUNDING_DECIMALS)}
+        </span>
+        <span className="expense-time">{timestampText}</span>
+      </div>
     </li>
   );
 }

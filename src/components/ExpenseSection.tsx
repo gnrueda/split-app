@@ -42,8 +42,12 @@ export function ExpenseSection({
   }, [expenses]);
 
   return (
-    <div className="section">
-      <h2>2. Registrar Gasto</h2>
+    <section className="section section-expenses">
+      <div className="section-head">
+        <h2>2. Registrar Gasto</h2>
+        <p>Carga cada consumo para mantener el balance al día.</p>
+      </div>
+
       <div className="expense-input-row">
         <select
           value={payer}
@@ -64,7 +68,7 @@ export function ExpenseSection({
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
           onKeyDown={handleKeyPress}
-          placeholder="Monto ($)"
+          placeholder="Monto"
           aria-label="Monto"
         />
         <input
@@ -72,20 +76,32 @@ export function ExpenseSection({
           value={desc}
           onChange={(e) => setDesc(e.target.value)}
           onKeyDown={handleKeyPress}
-          placeholder="Concepto (ej. Pizza)"
+          placeholder="Concepto"
           aria-label="Concepto del gasto"
         />
       </div>
-      <button onClick={handleAddExpense} disabled={isAddExpenseDisabled}>
-        Agregar Gasto
+
+      <button
+        type="button"
+        className="primary-button"
+        onClick={handleAddExpense}
+        disabled={isAddExpenseDisabled}
+      >
+        Agregar gasto
       </button>
 
-      <h3>Historial:</h3>
-      <ul>
-        {sortedExpenses.map((expense) => (
-          <ExpenseList key={expense.id} expense={expense} />
-        ))}
-      </ul>
-    </div>
+      <div className="list-block">
+        <h3>Historial reciente</h3>
+        {sortedExpenses.length === 0 ? (
+          <p className="empty-copy">Aun no hay gastos registrados.</p>
+        ) : (
+          <ul className="expense-history">
+            {sortedExpenses.map((expense) => (
+              <ExpenseList key={expense.id} expense={expense} />
+            ))}
+          </ul>
+        )}
+      </div>
+    </section>
   );
 }

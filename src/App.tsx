@@ -74,20 +74,21 @@ function App() {
     <>
       <main className="app">
         <Header />
+        <div className="app-content">
+          <UsersSection users={users} onAddUser={addUser} />
 
-        <UsersSection users={users} onAddUser={addUser} />
+          <ExpenseSection
+            users={users}
+            expenses={expenses}
+            onAddExpense={addExpense}
+          />
 
-        <ExpenseSection
-          users={users}
-          expenses={expenses}
-          onAddExpense={addExpense}
-        />
-
-        <BalanceSection
-          users={users}
-          expenses={expenses}
-          onClearData={clearData}
-        />
+          <BalanceSection
+            users={users}
+            expenses={expenses}
+            onClearData={clearData}
+          />
+        </div>
       </main>
       <Footer />
     </>

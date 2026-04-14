@@ -39,14 +39,18 @@ export function BalanceSection({
   }, [users, expenses]);
 
   return (
-    <div className="section">
-      <h2>3. Balance Final</h2>
+    <section className="section section-balance">
+      <div className="section-head">
+        <h2>3. Balance Final</h2>
+        <p>Calcula transferencias mínimas para saldar cuentas.</p>
+      </div>
 
       {users.length > 0 && expenses.length > 0 && (
         <div className="accumulated-section">
           <div className="accumulated-header">
             <h3>Acumulado por Participante</h3>
             <button
+              type="button"
               onClick={toggleAccumulated}
               className="secondary-button"
               aria-expanded={showAccumulated}
@@ -73,25 +77,28 @@ export function BalanceSection({
 
       <div className="action-buttons">
         <button
+          type="button"
           onClick={calculateSplit}
           className="primary-button"
           disabled={isCalculateDisabled}
         >
           Calcular Deudas
         </button>
-        <button onClick={onClearData} className="danger-button">
+        <button type="button" onClick={onClearData} className="danger-button">
           Limpiar Datos
         </button>
       </div>
       <div className="results">
         {expenses.length === 0 ? (
-          <p>No hay gastos registrados.</p>
+          <p className="empty-copy">No hay gastos registrados.</p>
         ) : !hasCalculated ? (
-          <p>Hay cambios sin recalcular. Haz clic en "Calcular Deudas".</p>
+          <p className="pending-copy">
+            Hay cambios sin recalcular. Haz clic en "Calcular Deudas".
+          </p>
         ) : transactions.length === 0 ? (
-          <p>Las cuentas están saldadas.</p>
+          <p className="success-copy">Las cuentas están saldadas.</p>
         ) : (
-          <ul>
+          <ul className="debt-list">
             {transactions.map((transaction, index) => (
               <TransactionList
                 key={`${transaction.from}-${transaction.to}-${transaction.amount}-${index}`}
@@ -101,6 +108,6 @@ export function BalanceSection({
           </ul>
         )}
       </div>
-    </div>
+    </section>
   );
 }
