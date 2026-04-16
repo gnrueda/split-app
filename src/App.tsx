@@ -3,11 +3,13 @@ import { Header } from "./components/Header";
 import { UsersSection } from "./components/UsersSection";
 import { ExpenseSection } from "./components/ExpenseSection";
 import { BalanceSection } from "./components/BalanceSection";
+import { ConfirmModal } from "./components/ConfirmModal";
 import { Footer } from "./components/Footer";
 import { storage } from "./utils/storage";
 import { notifications } from "./utils/notifications";
 import { usersManager } from "./utils/users";
 import { expensesManager } from "./utils/expenses";
+import { useConfirm } from "./hooks/useConfirm";
 import type { Expense, UserName } from "./types/domain";
 
 function getErrorMessage(error: unknown): string {
@@ -20,6 +22,7 @@ function getErrorMessage(error: unknown): string {
 function App() {
   const [users, setUsers] = useState<UserName[]>([]);
   const [expenses, setExpenses] = useState<Expense[]>([]);
+  const confirmModal = useConfirm();
 
   useEffect(() => {
     const savedUsers = storage.loadUsers();
@@ -60,14 +63,15 @@ function App() {
   };
 
   const clearData = () => {
-    if (
-      window.confirm("¿Estás seguro de que quieres borrar todos los datos?")
-    ) {
-      setUsers([]);
-      setExpenses([]);
-      storage.clearAll();
-      notifications.success("Todos los datos han sido borrados");
-    }
+    confirmModal.confirm(
+      "¿Estás seguro de que quieres borrar todos los datos?",
+      () => {
+        setUsers([]);
+        setExpenses([]);
+        storage.clearAll();
+        notifications.success("Todos los datos han sido borrados");
+      },
+    );
   };
 
   return (
@@ -91,6 +95,13 @@ function App() {
         </div>
       </main>
       <Footer />
+      {confirmModal.isOpen && (
+        <ConfirmModal
+          message={confirmModal.message}
+          onConfirm={confirmModal.handleConfirm}
+          onCancel={confirmModal.handleCancel}
+        />
+      )}
     </>
   );
 }
